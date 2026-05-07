@@ -59,23 +59,29 @@ def write_results_to_file(kmer_data, output_filename):
 
 
 def main():
+    """
+    Run the k-mer counting script from the command line.
+    """
     sequence_file = sys.argv[1]
     k = int(sys.argv[2])
     output_file = sys.argv[3]
-    
+
+    kmer_data = {}
+
     print(f"Reading sequences from {sequence_file}...")
 
-    with open(sequence_file, 'r') as f:
+    with open(sequence_file, "r") as f:
         for sequence in f:
-            sequence = sequence.strip()
+            sequence = sequence.strip().upper()
 
             if not validate_sequence(sequence, k):
-                print(f"  Warning: Skipping sequence")
+                print("  Warning: Skipping sequence")
                 continue
-            
-            kmer_data = count_kmers_with_context(sequence, k) 
-            
-            write_results_to_file(kmer_data, output_file)
 
-if __name__ == '__main__':
+            count_kmers_with_context(sequence, k, kmer_data)
+
+    write_results_to_file(kmer_data, output_file)
+
+
+if __name__ == "__main__":
     main()
