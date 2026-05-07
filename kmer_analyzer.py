@@ -40,18 +40,22 @@ def count_kmers_with_context(sequence, k, kmer_data=None):
 
 
 def write_results_to_file(kmer_data, output_filename):
+    """
+    Write k-mer counts and following-character frequencies to an output file.
+    """
     sorted_kmers = sorted(kmer_data.keys())
-    
-    with open(output_filename, 'w') as f:
+
+    with open(output_filename, "w") as f:
         for kmer in sorted_kmers:
-            next_chars = kmer_data[kmer]['next_chars']
-            
+            total_count = kmer_data[kmer]["count"]
+            next_chars = kmer_data[kmer]["next_chars"]
+
             next_char_str = " ".join(
-                f"{char}:{freq}" 
+                f"{char}:{freq}"
                 for char, freq in sorted(next_chars.items())
             )
-            
-            f.write(f"{kmer} {next_char_str}\n")
+
+            f.write(f"{kmer} count:{total_count} {next_char_str}\n")
 
 
 def main():
