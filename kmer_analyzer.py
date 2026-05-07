@@ -9,14 +9,18 @@ def validate_sequence(sequence, k):
     return True
 
 def update_kmer_count(kmer_data, kmer, next_char):
+    """
+    Update the count for one k-mer and the character that follows it.
+    """
     if kmer not in kmer_data:
-        kmer_data[kmer] = {'count': 1, 'next_chars': {}}
-    
-    kmer_data[kmer]['count'] += 1
-    
-    if next_char not in kmer_data[kmer]['next_chars']:
-        kmer_data[kmer]['next_chars'][next_char] = 0
-    kmer_data[kmer]['next_chars'][next_char] += 1
+        kmer_data[kmer] = {"count": 0, "next_chars": {}}
+
+    kmer_data[kmer]["count"] += 1
+
+    if next_char not in kmer_data[kmer]["next_chars"]:
+        kmer_data[kmer]["next_chars"][next_char] = 0
+
+    kmer_data[kmer]["next_chars"][next_char] += 1
 
     return kmer_data
 
