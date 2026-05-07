@@ -16,3 +16,6 @@ This project counts k-mers from DNA sequence fragments and records the frequency
 ```bash
 python kmer_context.py example_sequences.txt 2 output.txt
 
+AI Use Statement
+
+I used AI assistance to help identify bugs, improve code structure, write docstrings, create comments, and develop pytest tests. I reviewed and edited the final code myself to make sure I understood the logic and that the script met the assignment requirements.
