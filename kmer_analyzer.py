@@ -24,15 +24,18 @@ def update_kmer_count(kmer_data, kmer, next_char):
 
     return kmer_data
 
-def count_kmers_with_context(sequence, k):
-    kmer_data = {}
-    
+def count_kmers_with_context(sequence, k, kmer_data=None):
+    """
+    Count all k-mers in a sequence and track the character after each k-mer.
+    """
+    if kmer_data is None:
+        kmer_data = {}
+
     for i in range(len(sequence) - k):
-        kmer = sequence[i:i+k]
-        next_char = sequence[i+k]
-        
-        kmer_data = update_kmer_count(kmer_data, kmer, next_char)
-    
+        kmer = sequence[i:i + k]
+        next_char = sequence[i + k]
+        update_kmer_count(kmer_data, kmer, next_char)
+
     return kmer_data
 
 
